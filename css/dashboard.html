@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top" data-aos="fade-down">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./../index.html">
+            <h3 class="fw-bold" style="color: #ffffff;">Personal Blogging App</h3>
+          </a>
+          <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars-staggered" style="color: #ffffff;"></i>
+          </button>
+          <div class="collapse navbar-collapse text-center"  id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item fw-bold">
+                <a class="nav-link active" aria-current="page" href="#">
+                </a>
+              </li>
+            </ul>
+            <div id="name">
+             
+            </div>
+            <form class="d-flex text-center" role="search" id="inner">
+              <a href="./../login.html">login</a>
+          </form>
+          </div>
+        </div>
+      </nav>
+<!-- navabr end -->
+
+
+<!-- dashboard start -->
+
+<div class="container-fluid" style="margin-top: 5%;">
+    <div class="container">
+        <h2 class="text-dark fw-bold p-4">Dashboard</h2>
+    </div>
+</div>      
+
+<!-- dashboard end -->
+
+
+<!-- public post start -->
+
+<div class="container-fluid bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mt-3 mb-3" style="background-color: #ffffff; border-radius: 10px;">
+                <div class="input-group">
+                    <div class="input-group-prepend mt-3">
+                    </div>
+                    <input type="text" class="form-control mt-5" placeholder="placeholder" aria-label="Username" id="title" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="file" class="form-control mt-3" placeholder="Choose your picture" aria-label="Username" id="image" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <textarea class="form-control mt-3" id="description" aria-label="With textarea" placeholder="What is in your mind"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-4 mb-3 " style="background-color: #4834d4; font-weight: 600;" id="public-post">Public Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- post start -->
+    <div class="container">
+        <h2 class="fw-bold mt-3">My Blogs</h2>
+    </div>
+
+     <div id="root">
+
+
+
+</div>
+    <!-- post end -->
+
+
+
+
+</div>
+
+<!-- public post end -->
+
+
+
+
+
+<!-- Modal -->
+`<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+              <div class="input-group mb-3">
+                <input type="text" id="title1" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" id="desc1" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-change">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal end -->
+
+
+
+
+    <script type="module" src="./dashboard.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 300,
+        duration: 1000,
+      });
+    </script>
+</body>
+</html>
