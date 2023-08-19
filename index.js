@@ -26,8 +26,14 @@ onAuthStateChanged(auth, async(user) => {
                 let name = doc.data().fname
 
                 document.getElementById('name').innerHTML = `
-                <p class="fw-bold text-light m-3">${name}</p>`
+                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;">${name}</p>`
 
+                document.getElementById('post').innerHTML = `
+                <a href='./css/dashboard.html'>
+                <button style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>
+                </a>
+                `
+                
                 const q = query(collection(db, "Detail-Post"));
 
                 const querySnapshot = await getDocs(q);
