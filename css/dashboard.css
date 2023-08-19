@@ -20,6 +20,8 @@ form a{
     align-items: center;
     width: 100%;
     transition: 1s;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .navbar{
