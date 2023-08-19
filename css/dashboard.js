@@ -72,10 +72,18 @@ onAuthStateChanged(auth, async(user) => {
                 let name = doc.data().fname
 
                 document.getElementById('name').innerHTML = `
-                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;">${name}</p>`
+                <p id='loca1' class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor: pointer;">${name}</p>`
 
                 document.getElementById('post').innerHTML = `
-                <button style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>`
+                <button id='loca2' style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>`
+
+                document.getElementById('loca1').addEventListener('click' , ()=>{
+                    location.href = './profile.html'
+                })
+
+                document.getElementById('loca2').addEventListener('click' , ()=>{
+                    location.href = './dashboard.html'
+                })
 
                 const q = query(collection(db, "Detail-Post"));
 
