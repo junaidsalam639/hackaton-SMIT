@@ -45,7 +45,7 @@ onAuthStateChanged(auth, async(user) => {
                 <div class="row">
                 <div class="col-lg-10 blog">
                <div class="img d-flex">
-                   <img src="${doc.data().img}" alt="">
+                   <img src="${doc.data().img}" alt="" onclick='card("${doc.id}")'>
                    <div class="text">
                        <h5 class="fw-bold">${doc.data().title}</h5>
                        <p>${name} <span>${doc.data().date}</span></p>
@@ -69,6 +69,8 @@ onAuthStateChanged(auth, async(user) => {
     }
 });
 
+
+// singout function
 function log(){
     signOut(auth).then(() => {
                alert('singout successfully')
@@ -79,10 +81,12 @@ function log(){
 window.log = log
 
 
+// card function
+function card(e){
+    console.log(e);
+}
 
-
-
-
+window.card = card
 
 
 
