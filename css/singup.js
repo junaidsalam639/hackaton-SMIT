@@ -13,30 +13,37 @@ let email =document.getElementById("email").value
 if(email == '' || password == '' || fname.value == '' || lname.value == '' || rpass.value == ''){
     alert('please fill the input')
  }
- else{
-
-     createUserWithEmailAndPassword(auth, email, password)
-     .then(async(userCredential) => {
-     // Signed in 
-     const user = userCredential.user;
-     console.log(user);
-     try {
-         const docRef = await addDoc(collection(db, "Sinup-Data"), {
-           email : email,
-           password : password,
-           fname : fname.value,
-           lname : lname.value,
-           rpass : rpass.value,
-         });
-         console.log("Document written with ID: ", docRef.id);
-         setTimeout(() => {
-             alert('singup successfully');
-             location.href = './login.html'
-         }, 1000);
-       } catch (e) {
-         console.error("Error adding document: ", e);
-       }
+ else if(password == rpass.value){
+  createUserWithEmailAndPassword(auth, email, password)
+  .then(async(userCredential) => {
+  // Signed in 
+  const user = userCredential.user;
+  console.log(user);
+  try {
+      const docRef = await addDoc(collection(db, "Sinup-Data"), {
+        email : email,
+        password : password,
+        fname : fname.value,
+        lname : lname.value,
+        rpass : rpass.value,
+      });
+      console.log("Document written with ID: ", docRef.id);
+      setTimeout(() => {
+          alert('singup successfully');
+          location.href = './login.html'
+      }, 1000);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
-)}
     
+  }
+  )}
+  else{
+    alert('Please Confirm your Password')
+  }
+  
 })
+
+
+
+
