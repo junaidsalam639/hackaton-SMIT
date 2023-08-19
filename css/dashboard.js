@@ -22,11 +22,15 @@ onAuthStateChanged(auth, async(user) => {
             let desc = document.getElementById('description');
             let title = document.getElementById('title');
             let img = document.getElementById('image').files[0];
-
-
-            const storageRef = ref(storage, user.uid);
-
-            // 'file' comes from the Blob or File API
+            
+            if(desc.value == '' || title.value == '' || img.value == ''){
+                alert('please fill the input')
+            }else{
+                
+                
+                const storageRef = ref(storage, user.uid);
+                
+                // 'file' comes from the Blob or File API
             uploadBytes(storageRef, img).then((snapshot) => {
                 console.log('Uploaded a blob or file!');
 
@@ -48,7 +52,7 @@ onAuthStateChanged(auth, async(user) => {
                             })
                             console.log("Document written with ID: ", docRef.id)
 
-
+                            
                         } catch (e) {
                             console.error("Error adding document: ", e);
                         }
@@ -57,9 +61,10 @@ onAuthStateChanged(auth, async(user) => {
                         // Handle any errors
                     });
 
-            });
+                });
+            }
         })
-
+        
         async function post() {
 
             console.log(user.email);
