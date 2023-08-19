@@ -56,6 +56,7 @@ onAuthStateChanged(auth, async (user) => {
                 }
                 else {
                     console.log('akhajhj');
+                    alert('Please fill the input')
                 }
                 console.log(e);
             }
