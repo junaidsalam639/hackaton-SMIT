@@ -166,6 +166,7 @@ onAuthStateChanged(auth, async(user) => {
 function logout(){
     signOut(auth).then(() => {
                alert('singout successfully')
+               location.href = './../index.html'
             }).catch((error) => {
                 // An error happened.
                 console.log(error);
