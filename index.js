@@ -5,7 +5,7 @@ import { ref, getDownloadURL, uploadBytes, deleteObject } from "https://www.gsta
 
 
 
-onAuthStateChanged(auth, async(user) => {
+onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log(user.uid);
         console.log(user.email);
@@ -45,7 +45,7 @@ onAuthStateChanged(auth, async(user) => {
                 <div class="row">
                 <div class="col-lg-10 blog">
                <div class="img d-flex">
-                   <img src="${doc.data().img}" alt="" onclick='card("${doc.id}")'>
+                   <img src="${doc.data().img}" alt="" onclick='card("${doc.id} , ${user}")'>
                    <div class="text">
                        <h5 class="fw-bold">${doc.data().title}</h5>
                        <p>${name} <span>${doc.data().date}</span></p>
@@ -82,8 +82,8 @@ window.log = log
 
 
 // card function
-function card(e){
-    console.log(e);
+function card(e , user){
+    console.log(e , user);
 }
 
 window.card = card

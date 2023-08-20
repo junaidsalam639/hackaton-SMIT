@@ -16,8 +16,13 @@ document.getElementById("btn").addEventListener("click", () => {
           text: 'Something went wrong!',
         })
       } else {
-        alert('login successfully');
-        window.location.href = "./css/dashboard.html"
+        Swal.fire({
+          icon: 'success',
+          title: 'login successfully',
+          text: 'Something went wrong!',
+        }).then(()=>{
+          window.location.href = "./css/dashboard.html"
+        })
       }
     })
     .catch((error) => {
@@ -25,5 +30,14 @@ document.getElementById("btn").addEventListener("click", () => {
       const errorMessage = error.message;
       // ..
       console.log(error);
+      Swal.fire({
+        icon: 'success',
+        title: 'Your singup is first',
+        text: 'Something went wrong!',
+      }).then(()=>{
+        location.href = './singup.html'
+      })
     });
 })
+
+

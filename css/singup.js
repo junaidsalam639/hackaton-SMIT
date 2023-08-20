@@ -11,7 +11,11 @@ let password =document.getElementById("pass").value
 let email =document.getElementById("email").value
 
 if(email == '' || password == '' || fname.value == '' || lname.value == '' || rpass.value == ''){
-    alert('please fill the input')
+  Swal.fire({
+    icon: 'error',
+    title: 'please fill this form',
+    text: 'Something went wrong!',
+  })
  }
  else if(password == rpass.value){
   createUserWithEmailAndPassword(auth, email, password)
@@ -29,8 +33,13 @@ if(email == '' || password == '' || fname.value == '' || lname.value == '' || rp
       });
       console.log("Document written with ID: ", docRef.id);
       setTimeout(() => {
-          alert('singup successfully');
+        Swal.fire({
+          icon: 'success',
+          title: 'singup successfully',
+          text: 'Something went wrong!',
+        }).then(()=>{
           location.href = './login.html'
+        })
       }, 1000);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -38,7 +47,11 @@ if(email == '' || password == '' || fname.value == '' || lname.value == '' || rp
   }
   )}
   else{
-    alert('Please Confirm your Password')
+    Swal.fire({
+      icon: 'success',
+      title: 'Please Confirm your Password',
+      text: 'Something went wrong!',
+    })
   }
   
 })
