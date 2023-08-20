@@ -27,7 +27,6 @@ onAuthStateChanged(auth, async(user) => {
                 alert('please fill the input')
             }else{
                 
-                
                 const storageRef = ref(storage, user.uid);
                 
                 // 'file' comes from the Blob or File API

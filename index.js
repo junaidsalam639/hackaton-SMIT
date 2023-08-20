@@ -38,6 +38,7 @@ onAuthStateChanged(auth, (user) => {
 
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
+                    console.log(user);
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.id, " => ", doc.data());
                     document.getElementById('root').innerHTML += `
@@ -45,7 +46,7 @@ onAuthStateChanged(auth, (user) => {
                 <div class="row">
                 <div class="col-lg-10 blog">
                <div class="img d-flex">
-                   <img src="${doc.data().img}" alt="" onclick='card("${doc.id} , ${user}")'>
+               <img src="${doc.data().img}" alt="" onclick='card("${doc.id}", "${user.uid}")'>
                    <div class="text">
                        <h5 class="fw-bold">${doc.data().title}</h5>
                        <p>${name} <span>${doc.data().date}</span></p>
@@ -82,8 +83,11 @@ window.log = log
 
 
 // card function
-function card(e , user){
-    console.log(e , user);
+function card(docId, user) {
+    
+    console.log("Document ID:", docId);
+    console.log("User:", user);
+   
 }
 
 window.card = card
