@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./myProfile.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg fixed-top" data-aos="fade-down">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./../index.html">
+            <h3 class="fw-bold" style="color: #ffffff;">Personal Blogging App</h3>
+          </a>
+          <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars-staggered" style="color: #ffffff;"></i>
+          </button>
+          <div class="collapse navbar-collapse text-center"  id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item fw-bold">
+                <a class="nav-link active" aria-current="page" href="#">
+                </a>
+              </li>
+            </ul>
+            <a href="./profile.html">
+                <div id="name">
+                    
+                </div>
+            </a>
+            <div class="post" id="post">
+            
+            </div>
+            <form class="d-flex text-center" role="search" id="inner">
+              <a href="./../login.html">login</a>
+          </form>
+          </div>
+        </div>
+      </nav>
+<!-- navabr end -->
+
+
+
+
+    <script type="module" src="./myProfile.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 300,
+        duration: 1000,
+      });
+    </script>
+</body>
+</html>

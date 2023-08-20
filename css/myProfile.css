@@ -1,0 +1,51 @@
+
+/* navabr start */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+form a{
+    text-decoration: none;
+    background-color: #4834d4;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    transition: 1s;
+    font-size: 18px;
+    font-weight: bold;
+}
+form a:hover{
+    color: #fff;
+}
+.navbar{
+    background-color: #4834d4;
+}
+.collapse .navbar-nav .nav-item .nav-link{
+    color: #fff;
+    padding-left: 20px;
+    transition: 1s;
+}
+
+
+.navbar-toggler{
+    border: 0;
+    outline: 0;
+}
+.navbar-toggler span{
+    color: #fff;
+}
+.navbar-toggler:focus{
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+}
+/* navabr end */

@@ -26,7 +26,7 @@ onAuthStateChanged(auth, (user) => {
                 let name = doc.data().fname
 
                 document.getElementById('name').innerHTML = `
-                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;">${name}</p>`
+                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;cursor:pointer;">${name}</p>`
 
                 document.getElementById('post').innerHTML = `
                 <a href='./css/dashboard.html'>
@@ -84,10 +84,11 @@ window.log = log
 
 // card function
 function card(docId, user) {
-    
     console.log("Document ID:", docId);
     console.log("User:", user);
-   
+    localStorage.setItem('doc' , docId)
+    localStorage.setItem('user' , user)
+    location.href = './css/myProfile.html'
 }
 
 window.card = card
