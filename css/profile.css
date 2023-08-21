@@ -2,8 +2,9 @@
     font-weight: 700;
 }
 #userImage{
-    width: 230px;
+    width: 100%;
     height: 190px;
+    cursor: pointer;
 }
 #old,#New,#Repeat{
     outline: none;

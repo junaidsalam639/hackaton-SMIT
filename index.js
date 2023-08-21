@@ -26,7 +26,7 @@ onAuthStateChanged(auth, (user) => {
                 let name = doc.data().fname
 
                 document.getElementById('name').innerHTML = `
-                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;cursor:pointer;">${name}</p>`
+                <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold;cursor:pointer;text-transform: capitalize;">${name}</p>`
 
                 document.getElementById('post').innerHTML = `
                 <a href='./css/dashboard.html'>

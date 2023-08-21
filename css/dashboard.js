@@ -76,7 +76,7 @@ onAuthStateChanged(auth, async(user) => {
                 let name = doc.data().fname
 
                 document.getElementById('name').innerHTML = `
-                <p id='loca1' class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor: pointer;">${name}</p>`
+                <p id='loca1' class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor: pointer;text-transform: capitalize;">${name}</p>`
 
                 document.getElementById('post').innerHTML = `
                 <button id='loca2' style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>`

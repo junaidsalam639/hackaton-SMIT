@@ -50,10 +50,10 @@
     </div>
 <div class="container-fluid  bg-light  pt-5 pb-5">
     <div class="row">
-    <div class="container col-9  rounded pt-5 pb-5" style="background-color: #fff;">
-       <img id="userImage" src="https://media.istockphoto.com/id/1297448470/photo/interior-of-a-traditional-primary-school-wooden-floor-and-elements.jpg?s=1024x1024&w=is&k=20&c=AUIC0JQVVIUc68Pu2M5AmRh-Ppf_B9jeCK16uHMZhuQ=" alt="">
-       <h5 class="mt-3" id="inza"></h5>
-       <h5>Password</h5>
+    <div class="container col-lg-4 col-md-4 col-sm-4  rounded pt-5 pb-5" style="background-color: #fff;">
+      <div id="rep">
+       
+      </div>
     <div class="changePass" id="change">
       
     </div>
@@ -62,6 +62,29 @@
 </div>
 </div>
 
+
+<!-- Modal -->
+`<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <div class="input-group mb-3">
+              <input type="file" id="file1" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btn-change">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
 
     <script type="module" src="./profile.js"></script>
 </body>
