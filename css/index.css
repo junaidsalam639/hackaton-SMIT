@@ -82,7 +82,9 @@ body{
     padding-bottom: 20px;
     border-radius: 8px;
 }
-
+p{
+    text-transform: capitalize;
+}
 
 /* <!-- post end --> */
 

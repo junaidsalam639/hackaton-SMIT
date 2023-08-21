@@ -35,10 +35,7 @@ i{
     padding-left: 10px;
     align-items: center;
 }
-/* .changePass{
-    display: flex;
-    flex-direction: column;
-} */
+
 
 #Update{
     padding: 4px;
@@ -53,10 +50,22 @@ i{
     outline: none;
     border: none;
     margin-top: 17px;
-    background-color: rgb(99, 99, 218);
+    background-color: #4834d4;
 }
 
+.navbar-toggler:focus{
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+}
+/* navabr end */
 
+
+/* <!-- public post start --> */
+
+.input-group .form-control:focus{
+    box-shadow: none;
+}
 
 /* navabr start */
 

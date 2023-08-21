@@ -23,6 +23,9 @@ form a{
     font-size: 18px;
     font-weight: bold;
 }
+p{
+    text-transform: capitalize;
+}
 
 .navbar{
     background-color: #4834d4;
@@ -33,7 +36,10 @@ form a{
     transition: 1s;
 }
 
-
+.btn-close:focus{
+    border: 0;
+    outline: 0;
+}
 .navbar-toggler{
     border: 0;
     outline: 0;
@@ -58,8 +64,14 @@ form a{
 /* <!-- public post end --> */
 
 
-
-
+button:focus{
+    border: 0;
+    outline: 0;
+}
+.btn:focus{
+    border: 0;
+    outline: 0;
+}
 
 
 
