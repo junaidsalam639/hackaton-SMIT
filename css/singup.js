@@ -1,79 +1,86 @@
-import { auth, db , storage } from '../firebase.mjs'
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { collection, addDoc, query, where, getDocs, deleteDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-import { ref, getDownloadURL, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+// Define the password regex pattern
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
+import { auth, db, storage } from '../firebase.mjs';
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { ref, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
 document.getElementById("btn").addEventListener("click", () => {
-  console.log("faiz");
-  let fname = document.getElementById("fname")
-  let lname = document.getElementById("lname")
-  let rpass = document.getElementById("rpass")
-  let password = document.getElementById("pass").value
-  let email = document.getElementById("email").value
+  let fname = document.getElementById("fname");
+  let lname = document.getElementById("lname");
+  let rpass = document.getElementById("rpass");
+  let password = document.getElementById("pass").value;
+  let email = document.getElementById("email").value;
   let file = document.getElementById('file').files[0];
 
-  if (email == '' || password == '' || fname.value == '' || lname.value == '' || rpass.value == '' || file.value == '') {
+  if (email === '' || password === '' || fname.value === '' || lname.value === '' || rpass.value === '' || file === undefined) {
     Swal.fire({
       icon: 'error',
-      title: 'please fill this form',
-      text: 'Something went wrong!',
-    })
+      title: 'Please fill all fields',
+      text: 'All fields are required!',
+    });
   }
-  else if (password == rpass.value) {
+  else if (password !== rpass.value) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Passwords do not match',
+      text: 'Please confirm your password.',
+    });
+  }
+  else if (!passwordPattern.test(password)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Password requirements not met',
+      text: 'Password must have at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.',
+    });
+  }
+  else {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         console.log(user);
         const storageRef = ref(storage, user.uid);
 
-        // 'file' comes from the Blob or File API
         uploadBytes(storageRef, file).then((snapshot) => {
           console.log('Uploaded a blob or file!');
 
           getDownloadURL(ref(storage, user.uid))
-            .then(async(url) => {
+            .then(async (url) => {
               console.log(url);
               try {
-                const docRef = await addDoc(collection(db, "Sinup-Data"), {
+                const docRef = await addDoc(collection(db, "Signup-Data"), {
                   email: email,
                   password: password,
                   fname: fname.value,
                   lname: lname.value,
                   rpass: rpass.value,
-                  url : url,
+                  url: url,
                 });
-                console.log("Document written with ID: ", docRef.id);
-                setTimeout(() => {
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'singup successfully',
-                    text: 'Something went wrong!',
-                  }).then(() => {
-                    location.href = './login.html'
-                  })
-                }, 1000);
+
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Signup Successful',
+                  text: 'You have successfully signed up!',
+                }).then(() => {
+                  location.href = './login.html';
+                });
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
             })
             .catch((error) => {
-              // Handle any errors
+              console.error("Error getting download URL: ", error);
             });
         });
-      }
-      )
+      })
+      .catch((error) => {
+        console.error("Error creating user: ", error);
+      });
   }
-  else {
-    Swal.fire({
-      icon: 'success',
-      title: 'Please Confirm your Password',
-      text: 'Something went wrong!',
-    })
-  }
+});
 
-})
+
 
 
 
