@@ -17,7 +17,7 @@ onAuthStateChanged(auth, (user) => {
         async function post() {
 
             console.log(user.email);
-            const q1 = query(collection(db, "Sinup-Data"), where("email", "==", user.email));
+            const q1 = query(collection(db, "Signup-Data"), where("email", "==", user.email));
 
             const querySnapshot1 = await getDocs(q1);
             querySnapshot1.forEach(async (doc) => {

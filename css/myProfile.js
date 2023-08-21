@@ -14,7 +14,7 @@ onAuthStateChanged(auth, async (user) => {
         let user_id = localStorage.getItem('user')
         const uid = user.uid;
 
-        const q1 = query(collection(db, "Sinup-Data"), where("email", "==", user.email));
+        const q1 = query(collection(db, "Signup-Data"), where("email", "==", user.email));
 
         const querySnapshot1 = await getDocs(q1);
         querySnapshot1.forEach(async (doc) => {

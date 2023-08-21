@@ -33,7 +33,7 @@ document.getElementById("btn").addEventListener("click", () => {
         Swal.fire({
           icon: 'error',
           title: 'Login failed',
-          text: 'Invalid email or password. Please try again.',
+          text: 'Invalid email or password. your singup is first',
         });
       });
   }
