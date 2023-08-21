@@ -13,8 +13,8 @@ onAuthStateChanged(auth, async (user) => {
         console.log(user.email);
         const uid = user.uid;
 
-        document.getElementById('log').innerHTML = `
-        <a href="" id="log">logout</a>`
+        document.getElementById('inner').innerHTML = `
+        <a href="" id="log" onclick='log()'>logout</a>`
 
         console.log(user.email);
         const q1 = query(collection(db, "Sinup-Data"), where("email", "==", user.email));
@@ -103,14 +103,18 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-document.getElementById('log').addEventListener('click', () => {
+
+// singout function
+function log(){
     signOut(auth).then(() => {
-        alert('singout successfully')
-        location.href = './index.html'
-    }).catch((error) => {
-        // An error happened.
-    });
-})
+               alert('singout successfully')
+               location.href = './../index.html'
+            }).catch((error) => {
+                // An error happened.
+            });
+}
+window.log = log
+
 
 
 // image update code

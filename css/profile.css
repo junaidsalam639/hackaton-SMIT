@@ -3,8 +3,11 @@
 }
 #userImage{
     width: 100%;
-    height: 190px;
+    height: 160px;
     cursor: pointer;
+}
+i{
+    padding: 14px;
 }
 #old,#New,#Repeat{
     outline: none;
