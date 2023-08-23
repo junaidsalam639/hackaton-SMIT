@@ -46,54 +46,65 @@ onAuthStateChanged(auth, async (user) => {
             console.log(password);
 
             document.getElementById('change').innerHTML = `
-                <input type="password" id="old" placeholder="Old password"><br>
-                <input type="password" id="New" placeholder="New password"><br>
-                <input type="password" id="Repeat" placeholder="Repeat password"><br>
+                <input type="password" id="old"  maxlength="8" placeholder="Old password"><br>
+                <input type="password" id="New"  maxlength="8" placeholder="New password"><br>
+                <input type="password" id="Repeat" maxlength="8" placeholder="Repeat password"><br>
                 <button id="Update" onclick='update("${doc.id}")'>Update password</button>`
 
         })
 
+
+        // update password code 
         async function update(e) {
             console.log(e);
-
+        
             let old = document.getElementById('old');
             let New = document.getElementById('New');
             let Repeat = document.getElementById('Repeat');
-
-            const docRef = doc(db, "Sinup-Data", e);
+        
+            const docRef = doc(db, "Signup-Data", e);
             const docSnap = await getDoc(docRef);
+            
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data());
-
+        
                 let password = docSnap.data().password;
-
-                if (old.value == '' || New.value == '' || Repeat.value == '') {
-                    alert('Please fil the Input');
-                }
-                else {
-                    if (password == old.value) {
-                        if (New.value == Repeat.value) {
-                            const washingtonRef = doc(db, "Sinup-Data", e);
-                            console.log(New.value);
-                            // Set the "capital" field of the city 'DC'
-                            await updateDoc(washingtonRef, {
-                                password: New.value,
-                            }).then(() => {
-                                console.log('Passwords match');
-                                alert('Update successfully');
-                                location.reload();
-                            })
+        
+                if (old.value === '' || New.value === '' || Repeat.value === '') {
+                    alert('Please fill in all the fields');
+                } else {
+                    if (password === old.value) {
+                        if (New.value === Repeat.value) {
+                            // Password validation regex
+                            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+                            
+                            if (passwordRegex.test(New.value)) {
+                                const washingtonRef = doc(db, "Signup-Data", e);
+                                console.log(New.value);
+                                
+                                // Set the "password" field to the new password
+                                await updateDoc(washingtonRef, {
+                                    password: New.value,
+                                }).then(() => {
+                                    console.log('Passwords match');
+                                    alert('Update successful');
+                                    location.reload();
+                                });
+                            } else {
+                                alert('Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.');
+                            }
                         } else {
-                            alert('No Match Password New and Repeat password');
+                            alert('New password and Repeat password do not match');
                         }
                     } else {
                         console.log('Incorrect old password');
                         alert('Incorrect old password');
                     }
                 }
-
             }
         }
+        
+        
 
         window.update = update;
         // ...
