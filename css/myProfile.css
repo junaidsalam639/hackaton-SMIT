@@ -112,6 +112,10 @@ p{
    height: 300px;
    background-position: center;
    border-radius: 7px;
+   object-fit: cover;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
 }
 
 /* dosra card end */
