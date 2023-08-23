@@ -70,7 +70,7 @@ onAuthStateChanged(auth, async (user) => {
                    document.getElementById('post-add').innerHTML = `
                    <p class='fw-bold mt-3'>${user.email}</p>
                    <h3 class='fw-bold'>${name}</h3>
-                   <img src="${docSnap.data().img}" alt="">`
+                   <img class='mb-4' src="${docSnap.data().img}" alt="">`
 
                 } else {
             // docSnap.data() will be undefined in this case

@@ -72,9 +72,11 @@ button:focus{
     border: 0;
     outline: 0;
 }
+h5{
+    text-transform: capitalize;
+}
 
-
-
+ 
 /* <!-- post start --> */
 
 .blog img{

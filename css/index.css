@@ -53,6 +53,9 @@ form a:hover{
 body{
     background-color: #ddd;
 }
+h5{
+    text-transform: capitalize;
+}
 
 /* <!-- post start --> */
 

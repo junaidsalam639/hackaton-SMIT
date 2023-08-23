@@ -4,12 +4,13 @@ import { collection, addDoc, query, where, getDocs, deleteDoc, doc, getDoc, upda
 import { ref, getDownloadURL, uploadBytes, deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
 
-
+let myEmail;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log(user.uid);
         console.log(user.email);
         const uid = user.uid;
+        myEmail = user.email
 
         document.getElementById('inner').innerHTML = `
         <a href="" id="log" onclick='log()'>logout</a>`
@@ -64,16 +65,6 @@ onAuthStateChanged(auth, (user) => {
         post()
         window.post = post
         
-        // card function
-        function card(docId, user) {
-            console.log("Document ID:", docId);
-            console.log("User:", user);
-            localStorage.setItem('doc' , docId)
-            localStorage.setItem('user' , user)
-            location.href = './css/myProfile.html'
-        }
-        
-        window.card = card
         // ...
     } else {
         // User is signed out
@@ -117,9 +108,25 @@ querySnapshot.forEach((doc) => {
 </div>`
 });
 
-function card(e){
-    console.log(e);
-    location.href = './login.html'
+// card function
+console.log(myEmail);
+if(myEmail){
+    function card(docId, user) {
+        console.log("Document ID:", docId);
+        console.log("User:", user);
+        localStorage.setItem('doc' , docId)
+        localStorage.setItem('user' , user)
+        location.href = './css/myProfile.html'
+    }
+    
+    window.card = card
+}else if(!myEmail){   
+    function card(e){
+        console.log(e);
+        location.href = './login.html'
+    }
+    
+    window.card = card
 }
 
-window.card = card
+
