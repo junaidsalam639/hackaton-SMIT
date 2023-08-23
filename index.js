@@ -63,6 +63,17 @@ onAuthStateChanged(auth, (user) => {
         }
         post()
         window.post = post
+        
+        // card function
+        function card(docId, user) {
+            console.log("Document ID:", docId);
+            console.log("User:", user);
+            localStorage.setItem('doc' , docId)
+            localStorage.setItem('user' , user)
+            location.href = './css/myProfile.html'
+        }
+        
+        window.card = card
         // ...
     } else {
         // User is signed out
@@ -82,19 +93,33 @@ function log(){
 window.log = log
 
 
-// card function
-function card(docId, user) {
-    console.log("Document ID:", docId);
-    console.log("User:", user);
-    localStorage.setItem('doc' , docId)
-    localStorage.setItem('user' , user)
-    location.href = './css/myProfile.html'
+
+const q = query(collection(db, "Detail-Post"));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  document.getElementById('root').innerHTML += `
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-lg-10 blog">
+ <div class="img d-flex">
+ <img src="${doc.data().img}" alt="" onclick='card("${doc.id}")'>
+     <div class="text">
+         <h5 class="fw-bold">${doc.data().title}</h5>
+         <p> <span>${doc.data().date}</span></p>
+     </div>
+     </div>
+ <p class="mt-3 line">${doc.data().desc}</p>
+</div>
+</div>
+</div>`
+});
+
+function card(e){
+    console.log(e);
+    location.href = './login.html'
 }
 
 window.card = card
-
-
-
-
-
-
