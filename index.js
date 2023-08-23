@@ -34,30 +34,6 @@ onAuthStateChanged(auth, (user) => {
                 <button style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>
                 </a>
                 `
-                
-                const q = query(collection(db, "Detail-Post"));
-
-                const querySnapshot = await getDocs(q);
-                querySnapshot.forEach((doc) => {
-                    console.log(user);
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id, " => ", doc.data());
-                    document.getElementById('root').innerHTML += `
-                <div class="container mt-5">
-                <div class="row">
-                <div class="col-lg-10 blog">
-               <div class="img d-flex">
-               <img src="${doc.data().img}" alt="" onclick='card("${doc.id}", "${user.uid}")'>
-                   <div class="text">
-                       <h5 class="fw-bold">${doc.data().title}</h5>
-                       <p>${name} <span>${doc.data().date}</span></p>
-                   </div>
-                   </div>
-               <p class="mt-3 line">${doc.data().desc}</p>
-              </div>
-            </div>
-            </div>`
-                });
 
             });
 
