@@ -98,8 +98,7 @@ onAuthStateChanged(auth, async (user) => {
         window.update = update;
         // ...
     } else {
-        // User is signed out
-        // ...
+        location.href = '../index.html'
     }
 });
 

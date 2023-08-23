@@ -44,8 +44,7 @@ onAuthStateChanged(auth, async (user) => {
 
         // ...
     } else {
-        // User is signed out
-        // ...
+        location.href = '../index.html'
     }
 });
 

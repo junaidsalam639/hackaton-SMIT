@@ -23,16 +23,17 @@ onAuthStateChanged(auth, async(user) => {
             let title = document.getElementById('title');
             let img = document.getElementById('image').files[0];
             
-            if(desc.value == '' || title.value == '' || img.value == ''){
-                alert('please fill the input')
-            }else{
-                
+            if(desc.value == '' || title.value == '' || img === undefined){
+                alert('please fill the input');
+
+            }
+            else if(title.value.length >= 5 && title.value.length <= 50 && desc.value.length >= 100 && desc.value.length <= 3000){
                 const storageRef = ref(storage, user.uid);
                 
                 // 'file' comes from the Blob or File API
             uploadBytes(storageRef, img).then((snapshot) => {
                 console.log('Uploaded a blob or file!');
-
+    
                 getDownloadURL(ref(storage, user.uid))
                     .then(async (url) => {
                         console.log(url);
@@ -46,11 +47,16 @@ onAuthStateChanged(auth, async(user) => {
                                 title: title.value,
                                 img: url,
                                 date: concat
+                            });
+                            Swal.fire({
+                                text: 'Post Added Successful',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
                             }).then(() => {
-                                location.reload();
-                            })
+                                location.reload()
+                            });
                             console.log("Document written with ID: ", docRef.id)
-
+    
                             
                         } catch (e) {
                             console.error("Error adding document: ", e);
@@ -59,25 +65,32 @@ onAuthStateChanged(auth, async(user) => {
                     .catch((error) => {
                         // Handle any errors
                     });
-
+    
                 });
+
+            }
+            else{
+                Swal.fire({
+                    text: 'Post Title should be b/w 5 to 50 character and description should be b/w 100 to 3000 characters',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
             }
         })
         
         async function post() {
-
-            console.log(user.email);
             const q1 = query(collection(db, "Signup-Data"), where("email", "==", user.email));
-
+            
             const querySnapshot1 = await getDocs(q1);
             querySnapshot1.forEach(async (doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data().fname);
                 let name = doc.data().fname
+                let email = doc.data().email
 
                 document.getElementById('name').innerHTML = `
                 <p id='loca1' class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor: pointer;text-transform: capitalize;">${name}</p>`
-
+                
                 document.getElementById('post').innerHTML = `
                 <button id='loca2' style="border: 0; outline: 0; background-color: #4834d4; color: #ffffff; font-size: 18px; font-weight: bold; margin-left: 12px; margin-right: 12px;">Post</button>`
 
@@ -88,13 +101,14 @@ onAuthStateChanged(auth, async(user) => {
                 document.getElementById('loca2').addEventListener('click' , ()=>{
                     location.href = './dashboard.html'
                 })
-
+                
                 const q = query(collection(db, "Detail-Post"));
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
-
+                    console.log(user.email);
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.id, " => ", doc.data());
+                    
                     document.getElementById('root').innerHTML += `
                 <div class="container mt-5">
                 <div class="row">
@@ -115,9 +129,7 @@ onAuthStateChanged(auth, async(user) => {
             </div>
             </div>`
                 });
-
             });
-
         }
         post()
         window.post = post
@@ -173,8 +185,7 @@ onAuthStateChanged(auth, async(user) => {
         
 
     } else {
-        // User is signed out
-        // ...
+       location.href = '../index.html'
     }
 });
 

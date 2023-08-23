@@ -53,11 +53,6 @@ i{
     background-color: #4834d4;
 }
 
-.navbar-toggler:focus{
-    box-shadow: none;
-    border: 0;
-    outline: 0;
-}
 /* navabr end */
 
 
@@ -119,6 +114,8 @@ form a:hover{
     outline: 0;
 }
 /* navabr end */
+
+
 
 
 
