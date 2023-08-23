@@ -14,6 +14,9 @@ onAuthStateChanged(auth, async (user) => {
         let user_id = localStorage.getItem('user')
         const uid = user.uid;
 
+        document.getElementById('inner').innerHTML = `
+        <a href=""  onclick='logout()'>logout</a>`
+
         const q1 = query(collection(db, "Signup-Data"), where("email", "==", user.email));
 
         const querySnapshot1 = await getDocs(q1);
@@ -21,6 +24,9 @@ onAuthStateChanged(auth, async (user) => {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data().fname);
             let name = doc.data().fname
+
+            document.getElementById('name-user').innerHTML = `
+            <h2 class="fw-bold">All From ${name} </h2>`
 
             document.getElementById('name').innerHTML = `
             <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor:pointer;text-transform: capitalize;">${name}</p>`
@@ -31,32 +37,61 @@ onAuthStateChanged(auth, async (user) => {
             </a>
             `
         })
-      
-            const docRef = doc(db, "Detail-Post", doc_id);
-            const docSnap = await getDoc(docRef);
 
+        const docRef = doc(db, "Detail-Post", doc_id);
+        const docSnap = await getDoc(docRef);
+
+        const q = query(collection(db, "Signup-Data"), where("email", "==", user.email));
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data().fname);
+            let name = doc.data().fname
+            
             if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data());
-            } else {
-                // docSnap.data() will be undefined in this case
-                console.log("No such document!");
-            }
+            console.log("Document data:", docSnap.data());
+            document.getElementById('root').innerHTML += `
+            <div class="container mt-5">
+            <div class="row">
+            <div class="col-lg-10 blog">
+           <div class="img d-flex">
+               <img src="${docSnap.data().img}" alt="">
+               <div class="text">
+                   <h5 class="fw-bold">${docSnap.data().title}</h5>
+                   <p>${name} <span>${docSnap.data().date}</span></p>
+                   </div>
+                   </div>
+                   <p class="mt-3 line">${docSnap.data().desc}</p>
+                   </div>
+                   </div>
+                   </div>`
 
-        // ...
+                   document.getElementById('post-add').innerHTML = `
+                   <p class='fw-bold mt-3'>${user.email}</p>
+                   <h3 class='fw-bold'>${name}</h3>
+                   <img src="${docSnap.data().img}" alt="">`
+
+                } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    })
     } else {
         location.href = '../index.html'
     }
 });
 
 // singout function
-function log(){
+function logout() {
     signOut(auth).then(() => {
-               alert('singout successfully')
-            }).catch((error) => {
-                // An error happened.
-            });
+        alert('singout successfully');
+        location.href = '../index.html'
+    }).catch((error) => {
+        // An error happened.
+    });
 }
-window.log = log
+window.logout = logout
 
 
 
