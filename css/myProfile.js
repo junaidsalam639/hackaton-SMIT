@@ -45,12 +45,12 @@ onAuthStateChanged(auth, async (user) => {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data().fname);
             let name = doc.data().fname
-            
+
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data());
                 document.getElementById('name-user').innerHTML = `
                 <h2 class="fw-bold">All From ${docSnap.data().name1} </h2>`
-            document.getElementById('root').innerHTML += `
+                document.getElementById('root').innerHTML += `
             <div class="container mt-5">
             <div class="row">
             <div class="col-lg-10 blog">
@@ -66,16 +66,16 @@ onAuthStateChanged(auth, async (user) => {
                    </div>
                    </div>`
 
-                   document.getElementById('post-add').innerHTML = `
+                document.getElementById('post-add').innerHTML = `
                    <p class='fw-bold mt-3'>${user.email}</p>
                    <h3 class='fw-bold'>${docSnap.data().name1}</h3>
                    <img class='mb-4' src="${docSnap.data().img}" alt="">`
 
-                } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    })
+            } else {
+                // docSnap.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        })
     } else {
         location.href = '../index.html'
     }
