@@ -109,12 +109,12 @@ if(myEmail){
 
 //good morning afternoon code 
 
-let day = document.querySelector("#good")
+let day = document.getElementById("good");
 
 function getGreeting() {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
-
+    console.log(currentHour);
     let greeting;
 
     if (currentHour < 12) {
@@ -130,4 +130,6 @@ function getGreeting() {
 
 const greeting = getGreeting();
 day.innerHTML = greeting + "😎"
+
+
 
