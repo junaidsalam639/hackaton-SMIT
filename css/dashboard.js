@@ -17,11 +17,12 @@ onAuthStateChanged(auth, async (user) => {
         document.getElementById('public-post').addEventListener('click', async () => {
             console.log('hello world');
 
+            let name1 = document.getElementById('name1');
             let desc = document.getElementById('description');
             let title = document.getElementById('title');
             let img = document.getElementById('image').files[0];
 
-            if (desc.value == '' || title.value == '' || img === undefined) {
+            if (desc.value == '' || title.value == '' || name1.value == '' || img === undefined) {
                 alert('please fill the input');
 
             }
@@ -39,12 +40,15 @@ onAuthStateChanged(auth, async (user) => {
                             let date1 = new Date().toTimeString()
                             let concat = date + "  " + " " + date1.slice(0, 8)
                             console.log(concat);
+                            console.log(user.email);
                             try {
                                 const docRef = await addDoc(collection(db, "Detail-Post"), {
                                     desc: desc.value,
                                     title: title.value,
+                                    name1 : name1.value,
                                     img: url,
-                                    date: concat
+                                    date: concat,
+                                    email : user.email
                                 });
                                 Swal.fire({
                                     text: 'Post Added Successful',
@@ -82,7 +86,7 @@ onAuthStateChanged(auth, async (user) => {
             const querySnapshot1 = await getDocs(q1);
             querySnapshot1.forEach(async (doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data().fname);
+                console.log(doc.id, " => ", doc.data());
                 let name = doc.data().fname
                 let email = doc.data().email
 
@@ -100,7 +104,7 @@ onAuthStateChanged(auth, async (user) => {
                     location.href = './dashboard.html'
                 })
 
-                const q = query(collection(db, "Detail-Post"));
+                const q = query(collection(db, "Detail-Post"),where("email","==", user.email));
                 const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc) => {
                     console.log(user.email);
@@ -115,7 +119,7 @@ onAuthStateChanged(auth, async (user) => {
                    <img src="${doc.data().img}" alt="">
                    <div class="text">
                        <h5 class="fw-bold">${doc.data().title}</h5>
-                       <p>${name} <span>${doc.data().date}</span></p>
+                       <p>${doc.data().name1} <span>${doc.data().date}</span></p>
                    </div>
                    </div>
                <p class="mt-3 line">${doc.data().desc}</p>

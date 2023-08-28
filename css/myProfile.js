@@ -25,9 +25,6 @@ onAuthStateChanged(auth, async (user) => {
             console.log(doc.id, " => ", doc.data().fname);
             let name = doc.data().fname
 
-            document.getElementById('name-user').innerHTML = `
-            <h2 class="fw-bold">All From ${name} </h2>`
-
             document.getElementById('name').innerHTML = `
             <p class="fw-bold text-light m-3" style="font-size: 18px; font-weight: bold; cursor:pointer;text-transform: capitalize;">${name}</p>`
 
@@ -50,7 +47,9 @@ onAuthStateChanged(auth, async (user) => {
             let name = doc.data().fname
             
             if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
+                console.log("Document data:", docSnap.data());
+                document.getElementById('name-user').innerHTML = `
+                <h2 class="fw-bold">All From ${docSnap.data().name1} </h2>`
             document.getElementById('root').innerHTML += `
             <div class="container mt-5">
             <div class="row">
@@ -59,7 +58,7 @@ onAuthStateChanged(auth, async (user) => {
                <img src="${docSnap.data().img}" alt="">
                <div class="text">
                    <h5 class="fw-bold">${docSnap.data().title}</h5>
-                   <p>${name} <span>${docSnap.data().date}</span></p>
+                   <p>${docSnap.data().name1} <span>${docSnap.data().date}</span></p>
                    </div>
                    </div>
                    <p class="mt-3 line">${docSnap.data().desc}</p>
@@ -69,7 +68,7 @@ onAuthStateChanged(auth, async (user) => {
 
                    document.getElementById('post-add').innerHTML = `
                    <p class='fw-bold mt-3'>${user.email}</p>
-                   <h3 class='fw-bold'>${name}</h3>
+                   <h3 class='fw-bold'>${docSnap.data().name1}</h3>
                    <img class='mb-4' src="${docSnap.data().img}" alt="">`
 
                 } else {

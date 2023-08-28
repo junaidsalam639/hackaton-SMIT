@@ -75,7 +75,7 @@ querySnapshot.forEach((doc) => {
  <img src="${doc.data().img}" alt="" onclick='card("${doc.id}")'>
      <div class="text">
          <h5 class="fw-bold">${doc.data().title}</h5>
-         <p> <span>${doc.data().date}</span></p>
+         <p>${doc.data().name1} <span>${doc.data().date}</span></p>
      </div>
      </div>
  <p class="mt-3 line">${doc.data().desc}</p>
